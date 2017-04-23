@@ -112,7 +112,7 @@ if [ $time_s -gt 0 ]; then
 else
 	# 复制粘贴法
 	echo $_mcchat_input | xclip -i -selection clipboard
-	xdotool key --delay $time_s ctrl+v
+	xdotool key --delay 100 ctrl+v
 	#sleep .2
 fi
 
