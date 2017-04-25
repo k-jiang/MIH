@@ -90,30 +90,30 @@ TEMP_FILE="/tmp/mih.$(( ( RANDOM % 65535 ) + 1 ))"	# 用来暂时储存输入文
 #echo $TEMP_FILE
 zenity --entry --text 'Keep Minecraft on top and type your message here:\n保持 Minecraft 处于输入界面并在此输入内容：' --title 'Minecraft Input Helper' > $TEMP_FILE &
 # 自动切换输入法到中文（发送Ctrl+Shift快捷键到zenity对话框）
-sleep 0.2
+sleep 0.1
 xdotool key ctrl+shift
 
 # 从临时文件载入输入文字
 wait	# 等待输入框完成输入
+sleep 0.1	# 等待zenity写入到临时文件，以及焦点重新回到Minecraft
 _mcchat_input=$(cat "$TEMP_FILE")
 #echo $_mcchat_input
 rm $TEMP_FILE	# 删除临时文件
 
 if [[ "$_mcchat_input" = "" && -f "$sign_mode" ]]; then
-	xdotool key Escape	# 关闭输入框
+	#xdotool key Escape	# 关闭Minecraft输入框
 	exit 0
 fi
 
 # 将输入框中的文字输入到MC里
-sleep 0.25
-if [ $time_s -gt 0 ]; then
+if [ "$time_s" -gt 0 ]; then
 	# 逐字输入法
 	xdotool type --delay $time_s "$_mcchat_input"
 else
 	# 复制粘贴法
 	echo $_mcchat_input | xclip -i -selection clipboard
-	xdotool key --delay 100 ctrl+v
-	#sleep .2
+	xdotool key --delay 250 ctrl+v
+	sleep .1
 fi
 
 # 回车发送
