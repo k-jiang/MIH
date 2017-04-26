@@ -95,7 +95,7 @@ xdotool key ctrl+shift
 
 # 从临时文件载入输入文字
 wait	# 等待输入框完成输入
-sleep 0.1	# 等待zenity写入到临时文件，以及焦点重新回到Minecraft
+sleep 0.25	# 等待zenity写入到临时文件，以及焦点重新回到Minecraft
 _mcchat_input=$(cat "$TEMP_FILE")
 #echo $_mcchat_input
 rm $TEMP_FILE	# 删除临时文件
@@ -112,7 +112,7 @@ if [ "$time_s" -gt 0 ]; then
 else
 	# 复制粘贴法
 	echo $_mcchat_input | xclip -i -selection clipboard
-	xdotool key --delay 250 ctrl+v
+	xdotool key --delay 100 ctrl+v
 	sleep .1
 fi
 
