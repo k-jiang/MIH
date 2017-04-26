@@ -1,7 +1,9 @@
 # MIH - Minecraft Input Helper
-A Minecraft input helper for Linux ime tools. Linux下的Minecraft输入辅助工具  
+A Minecraft input helper for Linux ime.  
+Linux下的Minecraft输入辅助工具  
 ## Why Use This ? 解决的问题
-Linux下的输入法不认Minecraft输入框导致无法输入中文  
+To fix lwjgl incompatibility with Linux ime eg fcitx. If you play Minecraft on a Linux system and you need to type eg Chinese or Japaness that required ime, then this may suits you.  
+解决Minecraft在Linux下兼容ime的问题。因为lwjgl的特殊性导致ime无法在Linux中使用，这个脚本能临时解决不能在Minecraft里输入中文/日文的问题。  
 ## Dependencies 依赖项
 * zenity  
 * xdotool
@@ -9,7 +11,10 @@ Linux下的输入法不认Minecraft输入框导致无法输入中文
 * bash
   
 ## Usage 使用方法
-把此工具与快捷键绑定，在Minecraft输入时，使用系统快捷键调出工具，输入后回车即可。  
+Bind this script to your system shortcut. When you need to type in a ime, just call that shortcut.  
+把此工具与系统快捷键绑定，在Minecraft输入时，使用系统快捷键调出工具，输入后回车即可。  
+
+eg: "/path/to/mih.sh --sign"  
 ```
 Usage用法:
 	mih.sh [--sign] [Timespan时间]
@@ -32,5 +37,5 @@ Usage用法:
 * <=Minecraft 1.8.9 (带中文输入补丁)
 
 ## Notice 说明
-This script is modified based on Hagb's MIH tool https://github.com/Hagb/MIH. I have improved it so that it can run faster and could auto switch between ime (by sending Ctrl+Shift, see bash code for details). If you have any problem using this script you can try Hagb's origional MIH script.
+This script is modified based on Hagb's MIH tool https://github.com/Hagb/MIH. I have improved it so that it can run faster and could auto switch between ime (by sending Ctrl+Shift, see the bash code for details). If you have any problem using this script you can try Hagb's origional MIH script.  
 此脚本修改自Hagb的MIH https://github.com/Hagb/MIH ，我在原来的基础上添加了些许优化，比如缩短等待时间，自动打开输入法（发送Ctrl+Shift，请看源代码）等等。如果在使用上遇到任何问题可以考虑使用Hagb的脚本。
