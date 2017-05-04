@@ -42,6 +42,7 @@ case $# in #参数处理
 		fi
 		if [ "$1" = "--sign" ]; then
 			sign_mode=true
+			time_s=100;	#为sign模式启用逐字输入模式
 		elif grep '^[[:digit:]]*$' <<< "$1"; then #判断是否为数字
 			if [ "$1" -lt 0 ]; then
 				echo Invalid number 无效的数字 "$1"
@@ -90,7 +91,7 @@ TEMP_FILE="/tmp/mih.$(( ( RANDOM % 65535 ) + 1 ))"	# 用来暂时储存输入文
 #echo $TEMP_FILE
 zenity --entry --text 'Keep Minecraft on top and type your message here:\n保持 Minecraft 处于输入界面并在此输入内容：' --title 'Minecraft Input Helper' > $TEMP_FILE &
 # 自动切换输入法到中文（发送Ctrl+Shift快捷键到zenity对话框）
-sleep 0.1
+sleep 0.25
 xdotool key ctrl+shift
 
 # 从临时文件载入输入文字
@@ -112,8 +113,8 @@ if [ "$time_s" -gt 0 ]; then
 else
 	# 复制粘贴法
 	echo $_mcchat_input | xclip -i -selection clipboard
-	xdotool key --delay 100 ctrl+v
-	sleep .1
+	xdotool key --delay 200 ctrl+v
+	#sleep .1
 fi
 
 # 回车发送
