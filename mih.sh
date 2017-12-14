@@ -41,7 +41,7 @@ case $# in #参数处理
 			exit 0
 		fi
 		if [ "$1" = "--sign" ]; then
-			sign_mode=true
+			sign_mode="true"
 			time_s=100;	#为sign模式启用逐字输入模式
 		elif grep '^[[:digit:]]*$' <<< "$1"; then #判断是否为数字
 			if [ "$1" -lt 0 ]; then
@@ -59,7 +59,7 @@ case $# in #参数处理
 		;;
 	"2")
 		if [ "$1" = "--sign" ]; then
-			sign_mode = true
+			sign_mode="true"
 		fi
 		if grep '^[[:digit:]]*$' <<< "$2"; then #判断是否为数字
 			if [ "$1" -lt 0 ]; then
@@ -78,7 +78,7 @@ case $# in #参数处理
 esac
 
 # 在MC打开输入模式
-if [ -f $sign_mode ]; then
+if [ "$sign_mode" != "true" ]; then
 	sleep 0.25
 	xdotool key "t"
 fi
@@ -118,6 +118,6 @@ else
 fi
 
 # 回车发送
-if [ -f $sign_mode ]; then
+if [ "$sign_mode" != "true" ]; then
 	xdotool key Return
 fi
